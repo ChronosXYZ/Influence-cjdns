@@ -8,11 +8,13 @@
 
 ### Структура сообщения в JSON
 
+```
 { 
 	"msgID": 1,
 	"peerID":"fcec:ae97:8902:d810:6c92:ec67:efb2:3ec5",
 	"msgText":"VJU02Om8ow==" 
 } 
+```
 
 **msgID** - ID сообщения в чате
 **peerID** - IPv6 отправителя сообщения
