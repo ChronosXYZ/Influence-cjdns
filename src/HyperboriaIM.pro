@@ -16,7 +16,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    network.cpp
+    network.cpp \
+    contactmanager.cpp
 
 HEADERS += \
-    network.h
+    network.h \
+    contactmanager.h
