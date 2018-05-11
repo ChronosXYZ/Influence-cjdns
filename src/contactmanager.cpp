@@ -1,6 +1,6 @@
 #include "contactmanager.h"
 
-ContactManager::ContactManager()
+ContactManager::addContact()
 {
 
 }
