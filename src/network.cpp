@@ -25,4 +25,14 @@ class Network
         out << qint64(data.size() - sizeof(qint64));
         socket->writeDatagram(data, QHostAddress(ip), 6552);
     }
+    void readyRead()
+    {
+      QByteArray buffer;
+      buffer.resize(socket->pendingDatagramSize());
+      QHostAddress sender;
+      socket->readDatagram(buffer.data(), buffer.size(),
+                           &sender;, &senderPort;);
+      qDebug() << "Message from: " << sender.toString();
+      qDebug() << "Message: " << buffer;
+    }
 }
