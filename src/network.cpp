@@ -29,7 +29,6 @@ class Network
     {
       QByteArray buffer;
       buffer.resize(socket->pendingDatagramSize());
-      QHostAddress sender;
       socket->readDatagram(buffer.data(), buffer.size(),
                            &sender;, &senderPort;);
       qDebug() << "Message from: " << sender.toString();
