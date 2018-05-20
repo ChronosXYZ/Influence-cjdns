@@ -10,7 +10,7 @@ class network
     public:
         send(QString str, QHostAddress ip);
     private:
-        sendPing(QHostAddress ip);
+        read();
 };
 
 #endif // NETWORK_H
