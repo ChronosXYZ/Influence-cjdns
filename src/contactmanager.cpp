@@ -3,8 +3,8 @@
 ContactManager::sendPing(QHostAddress ip)
 {
 	json ping;
-	ping["peerID"] = QHostAddress::AnyIPv6.toString();
+	ping["peerID"] = QHostAddress::AnyIPv6;
 	ping["action"] = "ping";
 	QString str = ping.dump();
-	send(str, ip);
+	Network::send(str, ip);
 }
