@@ -1,5 +1,5 @@
-#ifndef NETWORK_H
-#define NETWORK_H
+#ifndef NETWORK_HPP
+#define NETWORK_HPP
 
 #include "lib/json/json.hpp"
 #include <QUdpSocket>
