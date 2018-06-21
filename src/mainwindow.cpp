@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    network = new Network();
+    network = new Network(true);
     handler = new Handler();
 }
 
@@ -18,7 +18,7 @@ MainWindow::~MainWindow()
 void MainWindow::on_connectToPeer_clicked()
 {
     QJsonObject j;
-    j["peerID"] = QHostAddress("::1").toString();
+    j["peerID"] = QHostAddress("fc8f:cc50:70b0:3731:d686:a75e:94f2:f44f").toString();
     j["action"] = "createSession";
     QString s = ui->peerID->text();
     network->sendDatagram(j, s);

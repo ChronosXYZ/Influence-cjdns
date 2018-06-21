@@ -11,7 +11,7 @@ class Network : public QObject
     private:
         QUdpSocket* udpSocket;
     public:
-        Network();
+        Network(bool is_server = true);
     public slots:
         void sendDatagram(QJsonObject j, QString s);
     signals:

@@ -1,9 +1,12 @@
 #include "network.hpp"
-Network::Network()
+Network::Network(bool is_server)
 {
     udpSocket = new QUdpSocket(this);
-    udpSocket->bind(QHostAddress::AnyIPv6, 6552);
-    connect(udpSocket, SIGNAL(readyRead()), this, SLOT(processTheDatagram()));
+    if (is_server)
+    {
+        udpSocket->bind(QHostAddress::AnyIPv6, 6552);
+        connect(udpSocket, SIGNAL(readyRead()), this, SLOT(processTheDatagram()));
+    }
 }
 
 void Network::sendDatagram(QJsonObject j, QString s)
