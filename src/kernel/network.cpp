@@ -1,25 +1,23 @@
+#include "network.hpp"
 Network::Network()
 {
     udpSocket = new QUdpSocket(this);
     udpSocket->bind(QHostAddress::AnyIPv6, 6552);
-    connect(udpSocket, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
+    connect(udpSocket, SIGNAL(readyRead()), this, SLOT(processTheDatagram()));
 }
-void Network::readPendingDatagrams()
+
+void Network::sendDatagram(QJsonObject j, QString s)
 {
-    while (udpSocket->hasPendingDatagrams()) {
-        QNetworkDatagram datagram = udpSocket->receiveDatagram();
-        processTheDatagram(datagram);
-    }
-}
-void Network::sendDatagram(json *j, QHostAddress ip)
-{
+    QHostAddress ip = QHostAddress(s);
     QByteArray baDatagram;
-    QDataStream out(&baDatagram, QIODevice::WriteOnly);
-    QString s = j.dump();
-    out << s;
-    udpSocket->writeDatagram(baDatagram, ip, 6552);
+    //QDataStream out(&baDatagram, QIODevice::WriteOnly);
+    QJsonDocument jbuff = QJsonDocument(j);
+    quint16 p = 6552;
+    baDatagram = jbuff.toJson(QJsonDocument::Compact);
+    udpSocket->writeDatagram(baDatagram, ip, p);
 }
-json Network::processTheDatagram()
+
+void Network::processTheDatagram()
 {
     QByteArray baDatagram;
     do {
@@ -27,10 +25,9 @@ json Network::processTheDatagram()
         udpSocket->readDatagram (baDatagram.data(), baDatagram.size()) ;
     } while (udpSocket->hasPendingDatagrams()) ;
 
-    QString buff;
-    QDataStream in(&baDatagram, QIODevice::Readonly);
-    in >> buff;
-    json j = new json;
-    j = json::parse(buff);
-    return json;
+    QJsonDocument jbuff = QJsonDocument::fromJson(baDatagram);
+    QJsonObject j = QJsonObject(jbuff.object());
+    //QDataStream in(&baDatagram, QIODevice::ReadOnly);
+    //in >> jbuff.fromBinaryData(baDatagram);
+    emit json_received(j);
 }

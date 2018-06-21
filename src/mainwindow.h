@@ -1,22 +1,35 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
+#include "kernel/network.hpp"
+#include "kernel/handler.hpp"
+#include <QMessageBox>
+#include <QJsonObject>
+#include <QJsonDocument>
+
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    public:
+        explicit MainWindow(QWidget *parent = 0);
+        ~MainWindow();
+    public slots:
+        void peerReceiverConnected();
+    private slots:
+        void on_connectToPeer_clicked();
+        void slotTimerAlarm();
 
-private:
-    Ui::MainWindow *ui;
+    private:
+        Ui::MainWindow *ui;
+        QTimer *timer;
+        Network *network;
+        Handler *handler;
+
+    bool receive;
 };
-
-#endif // MAINWINDOW_H

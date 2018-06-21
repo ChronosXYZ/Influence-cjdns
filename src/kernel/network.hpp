@@ -1,16 +1,21 @@
-#include "../lib/json/json.hpp"
-#include <QtNetwork>
+#pragma once
 
-class Network
+#include <QtNetwork>
+#include <QJsonObject>
+#include <QJsonDocument>
+
+class Network : public QObject
 {
-    using json = nlohmann::json;
+    Q_OBJECT
 
     private:
         QUdpSocket* udpSocket;
     public:
         Network();
     public slots:
-        void sendDatagram();
+        void sendDatagram(QJsonObject j, QString s);
+    signals:
+        void json_received(QJsonObject &jsonReceived);
     private slots:
-        void readPendingDatagrams();
+        void processTheDatagram();
 };

@@ -24,41 +24,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        main.cpp \
-        mainwindow.cpp \
-    kernel/network.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    kernel/network.cpp \
+    kernel/handler.cpp
 
 HEADERS += \
-        mainwindow.h \
     kernel/network.hpp \
-    lib/json/detail/conversions/from_json.hpp \
-    lib/json/detail/conversions/to_chars.hpp \
-    lib/json/detail/conversions/to_json.hpp \
-    lib/json/detail/input/binary_reader.hpp \
-    lib/json/detail/input/input_adapters.hpp \
-    lib/json/detail/input/lexer.hpp \
-    lib/json/detail/input/parser.hpp \
-    lib/json/detail/iterators/internal_iterator.hpp \
-    lib/json/detail/iterators/iter_impl.hpp \
-    lib/json/detail/iterators/iteration_proxy.hpp \
-    lib/json/detail/iterators/json_reverse_iterator.hpp \
-    lib/json/detail/iterators/primitive_iterator.hpp \
-    lib/json/detail/output/binary_writer.hpp \
-    lib/json/detail/output/output_adapters.hpp \
-    lib/json/detail/output/serializer.hpp \
-    lib/json/detail/exceptions.hpp \
-    lib/json/detail/json_pointer.hpp \
-    lib/json/detail/json_ref.hpp \
-    lib/json/detail/macro_scope.hpp \
-    lib/json/detail/macro_unscope.hpp \
-    lib/json/detail/meta.hpp \
-    lib/json/detail/value_t.hpp \
-    lib/json/adl_serializer.hpp \
-    lib/json/json.hpp \
-    lib/json/json_fwd.hpp \
-    mainwindow.h
+    mainwindow.h \
+    kernel/handler.hpp
 
 FORMS += \
         mainwindow.ui
