@@ -2,7 +2,7 @@
 
 Handler::Handler()
 {
-    network = new Network(false);
+    network = new Network();
     connect(network, &Network::json_received, this, &Handler::handle);
 }
 

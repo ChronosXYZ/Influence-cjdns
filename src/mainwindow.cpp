@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    network = new Network(true);
+    network = new Network(false);
     handler = new Handler();
 }
 
