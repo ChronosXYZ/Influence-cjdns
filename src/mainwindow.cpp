@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     network = new Network(false);
     handler = new Handler();
+    connect(handler, &Handler::createSessionSuccess, this, &MainWindow::peerReceiverConnected);
 }
 
 MainWindow::~MainWindow()
@@ -18,19 +19,23 @@ MainWindow::~MainWindow()
 void MainWindow::on_connectToPeer_clicked()
 {
     QJsonObject j;
-    j["peerID"] = QHostAddress("fc8f:cc50:70b0:3731:d686:a75e:94f2:f44f").toString();
+    j["peerID"] = my_ipv6;
     j["action"] = "createSession";
     QString s = ui->peerID->text();
     network->sendDatagram(j, s);
     timer = new QTimer();
-    connect(handler, &Handler::createSessionSuccess, this, &MainWindow::peerReceiverConnected);
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     timer->start(10000);
 }
 
 void MainWindow::slotTimerAlarm()
 {
-    if(!receive)
+    if(receive)
+    {
+        timer->stop();
+        receive = false;
+    }
+    else
     {
         int ret = QMessageBox::critical(this,QObject::tr("Error"),tr("Timeout Error"));
         timer->stop();
@@ -42,5 +47,5 @@ void MainWindow::slotTimerAlarm()
 void MainWindow::peerReceiverConnected()
 {
     receive = true;
-    int ret = QMessageBox::information(this,QObject::tr("Info"),tr("Peer available!"));
+    int ret = QMessageBox::information(this,QObject::tr("Info"),tr("Peer Available!"));
 }
