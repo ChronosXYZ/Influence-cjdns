@@ -13,7 +13,6 @@ void Network::sendDatagram(QJsonObject j, QString s)
 {
     QHostAddress ip = QHostAddress(s);
     QByteArray baDatagram;
-    //QDataStream out(&baDatagram, QIODevice::WriteOnly);
     QJsonDocument jbuff = QJsonDocument(j);
     quint16 p = 6552;
     baDatagram = jbuff.toJson(QJsonDocument::Compact);
@@ -30,7 +29,15 @@ void Network::processTheDatagram()
 
     QJsonDocument jbuff = QJsonDocument::fromJson(baDatagram);
     QJsonObject j = QJsonObject(jbuff.object());
-    //QDataStream in(&baDatagram, QIODevice::ReadOnly);
-    //in >> jbuff.fromBinaryData(baDatagram);
     emit json_received(j);
+}
+
+QString Network::local_ipv6()
+{
+    QHostAddress address;
+    foreach (address, QNetworkInterface::allAddresses()) {
+        if (address.protocol() == QAbstractSocket::IPv6Protocol && address != QHostAddress(QHostAddress::LocalHost))
+             break;
+    }
+    return(address.toString());
 }

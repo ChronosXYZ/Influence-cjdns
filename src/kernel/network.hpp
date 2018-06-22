@@ -3,6 +3,7 @@
 #include <QtNetwork>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <QNetworkInterface>
 
 class Network : public QObject
 {
@@ -12,6 +13,7 @@ class Network : public QObject
         QUdpSocket* udpSocket;
     public:
         Network(bool is_server = true);
+        static QString local_ipv6();
     public slots:
         void sendDatagram(QJsonObject j, QString s);
     signals:
