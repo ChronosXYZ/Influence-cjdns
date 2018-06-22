@@ -7,6 +7,8 @@ class Handler : public QObject
 {
     Q_OBJECT
 
+    const QString my_ipv6 = Network::local_ipv6();
+
     public:
         Handler();
     signals:
@@ -15,4 +17,6 @@ class Handler : public QObject
         Network *network;
     private slots:
         void handle(QJsonObject jsonReceived);
+
+
 };

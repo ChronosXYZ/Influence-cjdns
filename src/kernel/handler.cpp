@@ -12,7 +12,7 @@ void Handler::handle(QJsonObject jsonReceived)
     QJsonObject jsonSend;
     if(jsonReceived["action"] == "createSession" && !jsonReceived.contains("status"))
     {
-        jsonSend["peerID"] = QHostAddress("fc8f:cc50:70b0:3731:d686:a75e:94f2:f44f").toString();
+        jsonSend["peerID"] = my_ipv6;
         jsonSend["action"] = "createSession";
         jsonSend["status"] = true;
         QString peerReceiver = jsonReceived["peerID"].toString();
