@@ -12,7 +12,7 @@ class Handler : public QObject
     public:
         Handler();
     signals:
-        createSessionSuccess();
+        void createSessionSuccess();
     private:
         Network *network;
     private slots:
