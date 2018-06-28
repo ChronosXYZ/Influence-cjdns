@@ -18,6 +18,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_connectToPeer_clicked()
 {
+    ui->connectToPeer->setEnabled(false);
+    ui->connectToPeer->setText("Ожидание...");
     QJsonObject j;
     j["peerID"] = my_ipv6;
     j["action"] = "createSession";
@@ -40,6 +42,8 @@ void MainWindow::slotTimerAlarm()
         int ret = QMessageBox::critical(this,QObject::tr("Error"),tr("Timeout Error"));
         timer->stop();
         delete timer;
+        ui->connectToPeer->setEnabled(true);
+        ui->connectToPeer->setText("Подключиться");
     }
 
 }
@@ -48,4 +52,6 @@ void MainWindow::peerReceiverConnected()
 {
     receive = true;
     int ret = QMessageBox::information(this,QObject::tr("Info"),tr("Peer Available!"));
+    ui->connectToPeer->setEnabled(true);
+    ui->connectToPeer->setText("Подключиться");
 }
