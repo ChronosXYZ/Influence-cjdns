@@ -15,6 +15,7 @@ class Handler : public QObject
         void createSessionSuccess();
     private:
         Network *network;
+        void createSession(QJsonObject jsonReceived);
     private slots:
         void handle(QJsonObject jsonReceived);
 
