@@ -36,7 +36,7 @@ QString Network::local_ipv6()
 {
     QHostAddress address;
     foreach (address, QNetworkInterface::allAddresses()) {
-        if (address.protocol() == QAbstractSocket::IPv6Protocol && address != QHostAddress(QHostAddress::LocalHost))
+        if (address.protocol() == QAbstractSocket::IPv6Protocol && address != QHostAddress(QHostAddress::LocalHostIPv6))
              break;
     }
     return(address.toString());
