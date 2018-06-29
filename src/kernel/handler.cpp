@@ -2,6 +2,11 @@
 
 Handler::Handler()
 {
+    using namespace std::placeholders;
+
+    handlers = {
+        {"createSession", std::bind(&Handler::createSession, this, _1)}
+    };
     network = new Network();
     connect(network, &Network::json_received, this, &Handler::handle);
 }
@@ -9,11 +14,6 @@ Handler::Handler()
 
 void Handler::handle(QJsonObject jsonReceived)
 {
-    using namespace std::placeholders;
-    std::map<QString, std::function<void(QJsonObject)>> handlers = {
-        {"createSession", std::bind(&Handler::createSession, this, _1)}
-    };
-
     QString action = jsonReceived["action"].toString();
     handlers[action](jsonReceived);
 }

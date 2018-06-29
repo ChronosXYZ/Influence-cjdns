@@ -8,7 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     network = new Network(false);
     handler = new Handler();
+    timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     connect(handler, &Handler::createSessionSuccess, this, &MainWindow::peerReceiverConnected);
+    ui->myIP->setText(my_ipv6);
 }
 
 MainWindow::~MainWindow()
@@ -25,8 +28,6 @@ void MainWindow::on_connectToPeer_clicked()
     j["action"] = "createSession";
     QString s = ui->peerID->text();
     network->sendDatagram(j, s);
-    timer = new QTimer();
-    connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
     timer->start(10000);
 }
 
@@ -41,7 +42,6 @@ void MainWindow::slotTimerAlarm()
     {
         int ret = QMessageBox::critical(this,QObject::tr("Error"),tr("Timeout Error"));
         timer->stop();
-        delete timer;
         ui->connectToPeer->setEnabled(true);
         ui->connectToPeer->setText("Подключиться");
     }
