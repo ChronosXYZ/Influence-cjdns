@@ -31,6 +31,6 @@ class MainWindow : public QMainWindow
         Network *network;
         Handler *handler;
 
-    bool receive;
+    bool receive = false;
     const QString my_ipv6 = Network::local_ipv6();
 };
