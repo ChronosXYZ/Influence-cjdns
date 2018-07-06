@@ -17,6 +17,7 @@ class Handler : public QObject
         Network *network;
         void createSession(QJsonObject jsonReceived);
         std::map<QString, std::function<void(QJsonObject)>> handlers;
+        void createSessionSuccessMethod(QJsonObject jsonReceived);
     private slots:
         void handle(QJsonObject jsonReceived);
 };
