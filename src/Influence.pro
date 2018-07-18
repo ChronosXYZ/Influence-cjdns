@@ -27,12 +27,15 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     kernel/network.cpp \
-    kernel/handler.cpp
+    kernel/handler.cpp \
+    chatwindow.cpp
 
 HEADERS += \
     kernel/network.hpp \
     mainwindow.h \
-    kernel/handler.hpp
+    kernel/handler.hpp \
+    chatwindow.hpp
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    chatwindow.ui
