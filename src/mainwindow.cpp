@@ -33,7 +33,7 @@ void MainWindow::on_connectToPeer_clicked()
 
 void MainWindow::slotTimerAlarm()
 {
-    if(receive)
+    if(receive == true)
     {
         timer->stop();
         receive = false;
