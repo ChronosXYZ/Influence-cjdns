@@ -5,8 +5,8 @@ Handler::Handler()
     using namespace std::placeholders;
 
     handlers = {
-        {"createSession", std::bind(&Handler::createSession, this, _1)},
-        {"createSessionSuccess", std::bind(&Handler::createSessionSuccessMethod, this, _1)}
+        {"checkPeer", std::bind(&Handler::createSession, this, _1)},
+        {"checkPeerSuccess", std::bind(&Handler::checkPeerSuccessMethod, this, _1)}
     };
     network = new Network();
     connect(network, &Network::json_received, this, &Handler::handle);
@@ -23,12 +23,12 @@ void Handler::createSession(QJsonObject jsonReceived)
 {
     QJsonObject jsonSend;
     jsonSend["peerID"] = my_ipv6;
-    jsonSend["action"] = "createSessionSuccess";
+    jsonSend["action"] = "checkPeerSuccess";
     QString peerReceiver = jsonReceived["peerID"].toString();
     network->sendDatagram(jsonSend, peerReceiver);
 }
 
 void Handler::createSessionSuccessMethod(QJsonObject jsonReceived)
 {
-    emit createSessionSuccess();
+    emit checkPeerSuccess();
 }

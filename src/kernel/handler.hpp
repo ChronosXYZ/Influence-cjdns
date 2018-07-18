@@ -12,12 +12,12 @@ class Handler : public QObject
     public:
         Handler();
     signals:
-        void createSessionSuccess();
+        void checkPeerSuccess();
     private:
         Network *network;
         void createSession(QJsonObject jsonReceived);
         std::map<QString, std::function<void(QJsonObject)>> handlers;
-        void createSessionSuccessMethod(QJsonObject jsonReceived);
+        void checkPeerSuccessMethod(QJsonObject jsonReceived);
     private slots:
         void handle(QJsonObject jsonReceived);
 };

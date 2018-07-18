@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     handler = new Handler();
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));
-    connect(handler, &Handler::createSessionSuccess, this, &MainWindow::peerReceiverConnected);
+    connect(handler, &Handler::checkPeerSuccessSuccess, this, &MainWindow::peerReceiverAvailable);
     ui->myIP->setText(my_ipv6);
 }
 
@@ -25,7 +25,7 @@ void MainWindow::on_connectToPeer_clicked()
     ui->connectToPeer->setText("Ожидание...");
     QJsonObject j;
     j["peerID"] = my_ipv6;
-    j["action"] = "createSession";
+    j["action"] = "checkPeer";
     QString s = ui->peerID->text();
     network->sendDatagram(j, s);
     timer->start(10000);
@@ -48,7 +48,7 @@ void MainWindow::slotTimerAlarm()
 
 }
 
-void MainWindow::peerReceiverConnected()
+void MainWindow::peerReceiverAvailable()
 {
     receive = true;
     int ret = QMessageBox::information(this,QObject::tr("Info"),tr("Peer Available!"));

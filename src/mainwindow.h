@@ -20,7 +20,7 @@ class MainWindow : public QMainWindow
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
     public slots:
-        void peerReceiverConnected();
+        void peerReceiverAvailable();
     private slots:
         void on_connectToPeer_clicked();
         void slotTimerAlarm();
