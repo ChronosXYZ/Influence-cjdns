@@ -41,3 +41,8 @@ QString Network::local_ipv6()
     }
     return(address.toString());
 }
+
+Network::~Network()
+{
+    delete udpSocket;
+}
