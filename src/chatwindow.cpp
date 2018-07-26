@@ -61,7 +61,7 @@ void ChatWindow::peerReceiverLeftFromChat()
     msg += peerID;
     msg += tr(" left from this chat.");
     QMessageBox::warning(this, tr("Peer receiver left from chat!"), msg, QMessageBox::Ok);
-    ui->chatEdit->append(peerID + tr("left from this chat."));
+    ui->chatEdit->append(peerID + tr(" left from this chat."));
     ui->msgEdit->setEnabled(false);
     ui->sendMsgButton->setEnabled(false);
 }
