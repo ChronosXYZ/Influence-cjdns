@@ -64,7 +64,7 @@ void Handler::createChatMethod(QJsonObject jsonReceived)
         jsonSend["action"] = "createChatSuccess";
         jsonSend["chatID"] = jsonReceived["chatUUID"].toString();
         network->sendDatagram(jsonSend, *peerReceiver);
-        emit createChatSuccess(jsonReceived["peerID"].toString(), jsonReceived["chatID"].toString());
+        emit createChatSuccess(jsonReceived["peerID"].toString(), jsonReceived["chatUUID"].toString());
     }
     else
     {
