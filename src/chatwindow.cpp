@@ -32,7 +32,7 @@ void ChatWindow::sendMessage(QString msgText)
     jSend["msgText"] = msgText;
     network->sendDatagram(jSend, peerID);
     QDateTime date(QDateTime::currentDateTime());
-    ui->chatEdit->append("[<i>" + date.toString() + "</i>] " + tr("<b>You</b>: ") + msgText);
+    ui->chatEdit->append("<i>[" + date.toString() + "]</i> " + tr("<b>You</b>: ") + msgText);
 }
 
 void ChatWindow::sendMsgButtonClicked()
@@ -45,7 +45,7 @@ void ChatWindow::sendMsgButtonClicked()
 void ChatWindow::displayMsg(QString msgText)
 {
     QDateTime date(QDateTime::currentDateTime());
-    ui->chatEdit->append("[<i>" + date.toString() + "</i>] " + "<b>" + peerID + "</b>" + ": " + msgText);
+    ui->chatEdit->append("<i>[" + date.toString() + "]</i> " + "<b>" + peerID + "</b>" + ": " + msgText);
 }
 
 void ChatWindow::leftFromChat()
