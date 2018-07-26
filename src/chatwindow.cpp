@@ -31,7 +31,7 @@ void ChatWindow::sendMessage(QString msgText)
     jSend["chatID"] = chatID;
     jSend["msgText"] = msgText;
     network->sendDatagram(jSend, peerID);
-    ui->chatEdit->append(tr("You: ") + msgText);
+    ui->chatEdit->append(tr("<b>You</b>: ") + msgText);
 }
 
 void ChatWindow::sendMsgButtonClicked()
@@ -43,7 +43,7 @@ void ChatWindow::sendMsgButtonClicked()
 
 void ChatWindow::displayMsg(QString msgText)
 {
-    ui->chatEdit->append(peerID + ": " + msgText);
+    ui->chatEdit->append("<b>" + peerID + "</b>" + ": " + msgText);
 }
 
 void ChatWindow::leftFromChat()
@@ -62,7 +62,7 @@ void ChatWindow::peerReceiverLeftFromChat()
     msg += peerID;
     msg += tr(" left from this chat.");
     QMessageBox::warning(this, tr("Peer receiver left from chat!"), msg, QMessageBox::Ok);
-    ui->chatEdit->append(peerID + tr(" left from this chat."));
+    ui->chatEdit->append("<b>" + peerID + "</b>" + tr(" left from this chat."));
     ui->msgEdit->setEnabled(false);
     ui->sendMsgButton->setEnabled(false);
 }
