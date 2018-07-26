@@ -5,8 +5,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
     network = new Network(false);
+    if(*network->myIPv6 == "null")
+    {
+        QMessageBox::critical(parent, tr("Cjdns is not running!"), tr("Cjdns is not running, so the application will be closed."));
+        mDoQuit = true;
+    }
+    ui->setupUi(this);
     handler = new Handler();
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(slotTimerAlarm()));

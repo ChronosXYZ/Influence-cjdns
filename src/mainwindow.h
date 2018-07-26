@@ -25,6 +25,7 @@ class MainWindow : public QMainWindow
         QVector<ChatWindow*> pChatWindows;
         void setButtonToWaiting();
         void setButtonToConnect();
+        inline bool doQuit() const { return mDoQuit; }
     public slots:
         void peerReceiverAvailable();
     private slots:
@@ -42,4 +43,5 @@ class MainWindow : public QMainWindow
         Network *network;
         Handler *handler;
         bool receive = false;
+        bool mDoQuit = false;
 };

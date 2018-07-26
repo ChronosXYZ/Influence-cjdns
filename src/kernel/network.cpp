@@ -37,11 +37,19 @@ void Network::processTheDatagram()
 QString Network::localIPv6()
 {
     QHostAddress address;
+    QString addressString;
     foreach (address, QNetworkInterface::allAddresses()) {
         if (address.protocol() == QAbstractSocket::IPv6Protocol && address != QHostAddress(QHostAddress::LocalHostIPv6) && (address.toString()).contains("fc"))
-             break;
+        {
+            addressString = address.toString();
+            break;
+        }
+        else
+        {
+            addressString = "null";
+        }
     }
-    return(address.toString());
+    return(addressString);
 }
 
 Network::~Network()
