@@ -135,5 +135,14 @@ void MainWindow::peerReceiverLeftFromChatMethod(QString peerID, QString chatID)
         {
             pChatWindows.at(i)->peerReceiverLeftFromChat();
         }
+        else
+        {
+            QString msg;
+            msg += tr("Peer ");
+            msg += peerID;
+            msg += tr(" left from chat ");
+            msg += chatID;
+            QMessageBox::warning(this, tr("Peer receiver left from chat!"), msg, QMessageBox::Ok);
+        }
     }
 }
