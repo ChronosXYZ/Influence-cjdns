@@ -1,21 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>ChatWindow</class>
+ <widget class="QWidget" name="ChatWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>807</width>
+    <height>519</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string/>
   </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="0" colspan="2">
+    <widget class="QLineEdit" name="msgEdit"/>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="peerIDLabel">
+     <property name="minimumSize">
+      <size>
+       <width>697</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Contact PeerID: </string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="sendMsgButton">
+     <property name="locale">
+      <locale language="English" country="UnitedStates"/>
+     </property>
+     <property name="text">
+      <string>Send</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QTextEdit" name="chatEdit">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
- <connections/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>msgEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>sendMsgButton</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>360</x>
+     <y>497</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>757</x>
+     <y>497</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

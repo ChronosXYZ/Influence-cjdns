@@ -1,4 +1,5 @@
 #include "network.hpp"
+
 Network::Network(bool is_server)
 {
     udpSocket = new QUdpSocket(this);
@@ -7,6 +8,7 @@ Network::Network(bool is_server)
         udpSocket->bind(QHostAddress::AnyIPv6, 6552);
         connect(udpSocket, SIGNAL(readyRead()), this, SLOT(processTheDatagram()));
     }
+    myIPv6 = new QString(localIPv6());
 }
 
 void Network::sendDatagram(QJsonObject j, QString s)
@@ -23,16 +25,16 @@ void Network::processTheDatagram()
 {
     QByteArray baDatagram;
     do {
-        baDatagram.resize(udpSocket->pendingDatagramSize ()) ;
+        baDatagram.resize(udpSocket->pendingDatagramSize()) ;
         udpSocket->readDatagram (baDatagram.data(), baDatagram.size()) ;
     } while (udpSocket->hasPendingDatagrams()) ;
 
     QJsonDocument jbuff = QJsonDocument::fromJson(baDatagram);
     QJsonObject j = QJsonObject(jbuff.object());
-    emit json_received(j);
+    emit jsonReceived(j);
 }
 
-QString Network::local_ipv6()
+QString Network::localIPv6()
 {
     QHostAddress address;
     foreach (address, QNetworkInterface::allAddresses()) {
@@ -45,4 +47,5 @@ QString Network::local_ipv6()
 Network::~Network()
 {
     delete udpSocket;
+    delete myIPv6;
 }
