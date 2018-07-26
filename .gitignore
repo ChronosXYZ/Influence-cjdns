@@ -1,5 +1,4 @@
+.project
 *.user
-
-/.project
-
 *.autosave
+*.o

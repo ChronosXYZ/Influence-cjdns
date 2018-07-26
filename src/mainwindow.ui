@@ -29,18 +29,38 @@
    <string>Influence</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="1" column="0" colspan="4">
      <widget class="QLineEdit" name="peerID">
       <property name="text">
        <string/>
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QPushButton" name="connectToPeer">
+    <item row="0" column="0">
+     <widget class="QLabel" name="label">
+      <property name="locale">
+       <locale language="English" country="UnitedStates"/>
+      </property>
       <property name="text">
-       <string>Подключиться</string>
+       <string>My IPv6:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="4">
+     <widget class="QPushButton" name="connectToPeer">
+      <property name="locale">
+       <locale language="English" country="UnitedStates"/>
+      </property>
+      <property name="text">
+       <string>Connect</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="2">
+     <widget class="QLineEdit" name="myIP">
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </item>
@@ -49,5 +69,22 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>peerID</sender>
+   <signal>returnPressed()</signal>
+   <receiver>connectToPeer</receiver>
+   <slot>click()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>122</x>
+     <y>90</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>281</x>
+     <y>90</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

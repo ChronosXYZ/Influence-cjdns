@@ -9,15 +9,18 @@ class Network : public QObject
 {
     Q_OBJECT
 
-    private:
-        QUdpSocket* udpSocket;
+
     public:
         Network(bool is_server = true);
-        static QString local_ipv6();
+        ~Network();
+        static QString localIPv6();
+        const QString *myIPv6;
+    private:
+        QUdpSocket* udpSocket;
     public slots:
         void sendDatagram(QJsonObject j, QString s);
     signals:
-        void json_received(QJsonObject &jsonReceived);
+        void jsonReceived(QJsonObject &jsonReceived);
     private slots:
         void processTheDatagram();
 };
