@@ -47,7 +47,7 @@ void MainWindow::slotTimerAlarm()
     }
     else
     {
-        QMessageBox::critical(this, tr("Error"), tr("Timeout Error"));
+        QMessageBox::critical(this, tr("Error"), tr("Timeout Error\nPerhaps you have not started the cjdns daemon, you entered the wrong IP, the peer is off, or the peer did not start the messenger."));
         timer->stop();
         setButtonToConnect();
     }
