@@ -12,6 +12,7 @@ ChatWindow::ChatWindow(QString pID, QString cUUID, Handler *h, Network *n, QWidg
     handler = h;
     network = n;
     ui->peerIDLabel->setText(ui->peerIDLabel->text() + pID);
+    ui->chatIDLabel->setText(ui->chatIDLabel->text() + cUUID);
     connect(ui->sendMsgButton, &QAbstractButton::clicked, this, &ChatWindow::sendMsgButtonClicked);
 }
 ChatWindow::~ChatWindow()
