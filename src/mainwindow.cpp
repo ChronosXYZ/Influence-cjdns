@@ -58,7 +58,7 @@ void MainWindow::peerReceiverAvailable()
 {
     receive = true;
     int ret = QMessageBox::information(this, tr("Peer Available!"),
-                                         tr("Peer Available!\n Do you want to create chat?"), QMessageBox::Yes | QMessageBox::No);
+                                         tr("Peer Available!\nDo you want to create chat?"), QMessageBox::Yes | QMessageBox::No);
     if(ret == QMessageBox::Yes)
     {
         createChatSendDatagram(*handler->peerReceiver);
@@ -134,15 +134,6 @@ void MainWindow::peerReceiverLeftFromChatMethod(QString peerID, QString chatID)
         if(pChatWindows.at(i)->peerID == peerID && pChatWindows.at(i)->chatID == chatID)
         {
             pChatWindows.at(i)->peerReceiverLeftFromChat();
-        }
-        else
-        {
-            QString msg;
-            msg += tr("Peer ");
-            msg += peerID;
-            msg += tr(" left from chat ");
-            msg += chatID;
-            QMessageBox::warning(this, tr("Peer receiver left from chat!"), msg, QMessageBox::Ok);
         }
     }
 }
