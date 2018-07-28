@@ -38,6 +38,8 @@ void ChatWindow::sendMessage(QString msgText)
 void ChatWindow::sendMsgButtonClicked()
 {
     QString msg = ui->msgEdit->text();
+    if(msg == "")
+        return;
     sendMessage(msg);
     ui->msgEdit->setText("");
 }
