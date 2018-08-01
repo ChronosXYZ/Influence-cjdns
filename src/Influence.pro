@@ -39,3 +39,19 @@ HEADERS += \
 FORMS += \
         mainwindow.ui \
     chatwindow.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/material-widgets/release/ -lcomponents
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/material-widgets/debug/ -lcomponents
+else:unix: LIBS += -L$$PWD/material-widgets/ -lcomponents
+
+INCLUDEPATH += $$PWD/material-widgets
+DEPENDPATH += $$PWD/material-widgets
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/material-widgets/release/libcomponents.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/material-widgets/debug/libcomponents.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/material-widgets/release/components.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/material-widgets/debug/components.lib
+else:unix: PRE_TARGETDEPS += $$PWD/material-widgets/libcomponents.a
+
+RESOURCES += \
+    material-widgets/resources.qrc
