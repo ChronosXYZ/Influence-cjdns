@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>411</width>
-    <height>132</height>
+    <width>510</width>
+    <height>148</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>411</width>
-    <height>132</height>
+    <width>510</width>
+    <height>148</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>411</width>
-    <height>132</height>
+    <width>510</width>
+    <height>148</height>
    </size>
   </property>
   <property name="cursor">
@@ -43,9 +43,12 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="peerID">
+       <widget class="QLineEdit" name="myIP">
         <property name="text">
          <string/>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -64,9 +67,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="myIP">
+       <widget class="QLineEdit" name="peerID">
         <property name="readOnly">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -89,7 +92,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>peerID</sender>
+   <sender>myIP</sender>
    <signal>returnPressed()</signal>
    <receiver>connectToPeer</receiver>
    <slot>click()</slot>
